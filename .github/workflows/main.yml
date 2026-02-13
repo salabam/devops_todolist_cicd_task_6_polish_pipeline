@@ -77,7 +77,7 @@ jobs:
       - name: Upload python artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: python-artifacts-${{ matrix.Ostype }}-${{ matrix.PythonVersion }}
+          name: python-artifacts-${{ matrix.OsType }}-${{ matrix.PythonVersion }}
           path: .
 
       - name: Upload helm artifacts
@@ -104,7 +104,7 @@ jobs:
     - uses: actions/download-artifact@v4
       name: Download python artifacts
       with:
-        name: python-artifacts-${{ github.event.inputs.osType }}-${{ github.event.inputs.pythonVersion }}
+        name: python-artifacts-${{ github.event.inputs.osType || 'ubuntu-latest' }}-${{ github.event.inputs.pythonVersion || '3.8' }}
         path: .
 
     - name: Login to Docker Hub
